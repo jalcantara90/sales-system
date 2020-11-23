@@ -1,0 +1,10 @@
+<div class="-intro-x breadcrumb hidden sm:flex">
+  <a routerLink="/">Application</a>
+  <i class="material-icons text-gray-300">keyboard_arrow_right</i>
+  <ng-container  *ngFor="let breadcrumb of breadcrumbs$ | async; let last = last">
+    <a class="intro-x" [routerLink]="breadcrumb.url" routerLinkActive="breadcrumb--active">
+      {{ breadcrumb.label }}
+    </a>
+    <i *ngIf="!last" class="material-icons text-gray-300 intro-x">keyboard_arrow_right</i>
+  </ng-container>
+</div>

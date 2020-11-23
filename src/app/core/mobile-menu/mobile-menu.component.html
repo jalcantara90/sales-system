@@ -1,0 +1,22 @@
+<div class="mobile-menu md:hidden" [@openCloseMobileMenu]="menuState">
+  <div class="mobile-menu-bar">
+      <a class="flex mr-auto">
+        <app-main-logo></app-main-logo>
+      </a>
+      <a class="toogle-button"> <i class="material-icons text-white" (click)="toogleState()">menu</i> </a>
+  </div>
+  <ul>
+    <ng-container *ngFor="let navigationItem of navigation">
+      <li *ngIf="navigationItem !== 'DEVIDER'; else devider">
+          <a class="menu" [routerLink]="[navigationItem.route]" routerLinkActive="menu--active" >
+            <i class="material-icons"> {{navigationItem.icon}} </i>
+            <div class="side-menu__title"> {{navigationItem.title}} </div>
+          </a>
+      </li>
+    </ng-container>
+  </ul>
+</div>
+
+<ng-template #devider>
+  <li class="menu__devider"></li>
+</ng-template>

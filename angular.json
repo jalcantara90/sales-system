@@ -15,8 +15,11 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-builders/custom-webpack:browser",
           "options": {
+            "customWebpackConfig": {
+              "path": "webpack.config.js"
+            },
             "outputPath": "dist/sell-system",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -28,7 +31,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/assets/styles/midone.scss"
             ],
             "scripts": []
           },
@@ -64,7 +68,7 @@
           }
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "@angular-builders/custom-webpack:dev-server",
           "options": {
             "browserTarget": "sell-system:build"
           },
@@ -123,6 +127,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "sell-system"
+    }
+  },
+  "defaultProject": "sell-system",
+  "cli": {
+    "analytics": "252c2292-bc0b-413e-ad81-71aa4ea4a7b6"
+  }
 }
