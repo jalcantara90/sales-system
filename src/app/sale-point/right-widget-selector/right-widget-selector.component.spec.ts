@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { RightWidgetSelectorComponent } from './right-widget-selector.component';
 
@@ -6,7 +6,7 @@ describe('RightWidgetSelectorComponent', () => {
   let component: RightWidgetSelectorComponent;
   let fixture: ComponentFixture<RightWidgetSelectorComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ RightWidgetSelectorComponent ]
     })
