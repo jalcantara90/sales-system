@@ -1,0 +1,13 @@
+.button {
+  padding: .5rem .75rem;
+  @apply rounded;
+  font-weight: 500;
+  cursor: pointer;
+  @apply bg-blue-800;
+  transition-property: background;
+  @apply duration-300;
+
+  &:hover {
+    @apply bg-blue-600;
+  }
+}

@@ -1,1 +1,81 @@
-<p>sale-point works!</p>
+<div class="intro-y flex flex-col sm:flex-row items-center mt-8">
+  <h2 class="text-lg font-medium mr-auto">
+    Point of Sale
+  </h2>
+  <div class="w-full sm:w-auto flex mt-4 sm:mt-0 gap-2">
+    <button class="-intro-x bg-gradient-to-r button duration-300 from-purple-600 hover:from-purple-500 hover:to-purple-600 shadow-md text-white to-purple-700">New Order</button>
+    <div class="-intro-x pos-dropdown dropdown relative ml-auto sm:ml-0">
+      <button class="dropdown-toggle button px-2 box text-gray-700">
+        <span class="w-5 h-5 flex items-center justify-center"> <i class="material-icons">expand_more</i> </span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="pos intro-y grid grid-cols-12 gap-5 mt-5">
+  <div class="intro-y col-span-12 lg:col-span-8">
+    <app-product-filters></app-product-filters>
+    <app-product-type-selection></app-product-type-selection>
+    <app-product-grid
+      [productList]="productList"
+      (addItemTicket)="addProductTicket($event)">
+    </app-product-grid>
+  </div>
+
+  <div class="col-span-12 lg:col-span-4">
+    <app-right-widget-selector></app-right-widget-selector>
+
+    <div class="tab-content">
+      <div class="tab-content__pane active" id="ticket">
+        <app-ticket
+          [ticket]="ticket"
+          (addProduct)="addProductTicket($event)"
+          (substractProduct)="substractProductTicket($event)">
+        </app-ticket>
+        <app-coupon-code (applyDiscount)="addDiscount($event)"></app-coupon-code>
+        <app-resume
+          [ticket]="ticket"
+          (removeDiscount)="removeDiscount($event)">
+        </app-resume>
+
+        <div class="flex mt-5">
+          <button class="intro-x button w-32 border border-gray-400 duration-300 text-gray-600 hover:bg-gray-700 hover:text-white">Clear Items</button>
+          <button class="intro-x w-32 bg-gradient-to-r button duration-300 text-white bg-blue-800 shadow-md hover:bg-blue-700 ml-auto">Charge</button>
+        </div>
+      </div>
+        <div class="tab-content__pane" id="details">
+            <div class="box p-5 mt-5">
+                <div class="flex items-center border-b pb-5">
+                    <div class="">
+                        <div class="text-gray-600">Time</div>
+                        <div>02/06/20 02:10 PM</div>
+                    </div>
+                    <i data-feather="clock" class="w-4 h-4 text-gray-600 ml-auto"></i>
+                </div>
+                <div class="flex items-center border-b py-5">
+                    <div class="">
+                        <div class="text-gray-600">Customer</div>
+                        <div>Leonardo DiCaprio</div>
+                    </div>
+                    <i data-feather="user" class="w-4 h-4 text-gray-600 ml-auto"></i>
+                </div>
+                <div class="flex items-center border-b py-5">
+                    <div class="">
+                        <div class="text-gray-600">People</div>
+                        <div>3</div>
+                    </div>
+                    <i data-feather="users" class="w-4 h-4 text-gray-600 ml-auto"></i>
+                </div>
+                <div class="flex items-center pt-5">
+                    <div class="">
+                        <div class="text-gray-600">Table</div>
+                        <div>21</div>
+                    </div>
+                    <i data-feather="mic" class="w-4 h-4 text-gray-600 ml-auto"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+

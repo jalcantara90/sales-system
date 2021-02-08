@@ -1,5 +1,5 @@
 <nav class="side-nav">
-  <a [routerLink]="'/'" class="intro-x flex items-center pl-5 pt-4">
+  <a [routerLink]="'/'" class="intro-x">
     <app-main-logo></app-main-logo>
   </a>
   <div class="side-nav__devider my-6"></div>
@@ -7,7 +7,7 @@
     <ng-container *ngFor="let navigationItem of navigation">
       <li *ngIf="navigationItem !== 'DEVIDER'; else devider">
         <a [routerLink]="[navigationItem.route]" routerLinkActive="side-menu--active"  class="side-menu">
-          <div class="side-menu__icon"> <i [alt]="navigationItem.title" class="material-icons">{{navigationItem.icon}}</i> </div>
+          <div class="side-menu__icon"> <i class="material-icons">{{navigationItem.icon}}</i> </div>
           <div class="side-menu__title"> {{navigationItem.title}} </div>
         </a>
       </li>

@@ -1,0 +1,41 @@
+<div class="box p-5 mt-5">
+  <div class="flex">
+    <div class="mr-auto">Subtotal</div>
+    <div>{{ ticket.totalWithoutTaxOrDiscount | currency:'EUR' }}</div>
+  </div>
+  <div class="flex mt-4 discount" *ngFor="let discount of ticket.discountList">
+    <div class="mr-auto flex items-center duration-300">
+      <i class="material-icons text-red-600 mr-2 cursor-pointer" (click)="removeDiscount.emit(discount)">clear</i>
+      Discount
+      <span *ngIf="discount.code"> -
+        <span class="text-purple-600">
+          {{discount.code}}
+        </span>
+      </span>
+    </div>
+
+    <ng-container *ngIf="discount.amount">
+      <ng-container [ngSwitch]="discount.type">
+        <ng-container *ngSwitchCase="'fix'" [ngTemplateOutlet]="fixDiscount" [ngTemplateOutletContext]="{ $implicit: discount.amount }"></ng-container>
+        <ng-container *ngSwitchCase="'percent'" [ngTemplateOutlet]="percentDiscount" [ngTemplateOutletContext]="{ $implicit: discount.amount }"></ng-container>
+      </ng-container>
+    </ng-container>
+
+  </div>
+  <div class="flex mt-4">
+    <div class="mr-auto">Tax</div>
+    <div [ngClass]="{'line-through' : hasFreeTax }">{{ticket.tax + '%'}}</div>
+  </div>
+  <div class="flex mt-4 pt-4 border-t border-gray-200">
+    <div class="mr-auto font-medium text-base">Charge</div>
+    <div class="font-medium text-base">{{ticket.total | currency:'EUR'}}</div>
+  </div>
+</div>
+
+
+<ng-template #fixDiscount let-discount>
+  <div class="text-theme-6"> - {{discount | currency:'EUR'}}</div>
+</ng-template>
+<ng-template #percentDiscount let-discount>
+  <div class="text-theme-6">- {{discount}} %</div>
+</ng-template>

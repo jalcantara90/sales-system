@@ -1,0 +1,11 @@
+<div class="box flex p-5 mt-5">
+  <div class="w-full relative text-gray-700">
+    <input
+      type="text"
+      class="input input--lg w-full bg-gray-200 pr-10 placeholder-theme-13"
+      placeholder="Use coupon code..."
+      [formControl]="couponCode">
+    <i class="w-4 h-4 hidden sm:absolute my-auto inset-y-0 mr-3 right-0" data-feather="search"></i>
+  </div>
+  <button class="button text-white bg-blue-800 ml-2" (click)="apply()">Apply</button>
+</div>

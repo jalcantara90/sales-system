@@ -1,0 +1,14 @@
+.discount {
+  @apply duration-300;
+
+  i {
+    display: none;
+    font-size: 1rem;
+  }
+
+  &:hover {
+    i {
+      display: block;
+    }
+  }
+}

@@ -1,0 +1,28 @@
+
+.box {
+  @apply duration-300;
+  box-shadow: 0px 3px 20px #0000000b;
+  border-radius: 0.375rem;
+  position: relative;
+  @apply bg-white;
+
+  &.box__active {
+    background-color: #835df5;
+    .box--title {
+      @apply text-white;
+    }
+
+    .box--subtitle {
+      @apply text-gray-300;
+    }
+  }
+
+  .box--title {
+    @apply text-base;
+  }
+
+  .box--subtitle {
+    @apply text-gray-600;
+  }
+}
+

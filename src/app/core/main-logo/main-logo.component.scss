@@ -1,0 +1,24 @@
+.logo__complete {
+  @apply w-36;
+}
+
+.logo__simple {
+  @apply w-24;
+  display: none;
+}
+
+@media (max-width: 1280px) {
+  .logo__complete {
+    display: none;
+  }
+
+  .logo__simple {
+    display: block;
+  }
+}
+
+@media (max-width: 770px) {
+  .logo__simple {
+    @apply w-12;
+  }
+}
