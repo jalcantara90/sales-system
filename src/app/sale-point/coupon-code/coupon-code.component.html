@@ -9,3 +9,4 @@
   </div>
   <button class="button text-white bg-blue-800 ml-2" (click)="apply()">Apply</button>
 </div>
+<p class="text-red-600" *ngIf="error$ | async"> The code isn't valid </p>

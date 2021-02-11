@@ -12,7 +12,7 @@ import { Ticket } from '../../shared/ticket/ticket.model';
 export class TicketComponent implements OnInit {
   @Input() ticket: Ticket;
   @Output() addProduct: EventEmitter<Product> = new EventEmitter();
-  @Output() substractProduct: EventEmitter<Product> = new EventEmitter();
+  @Output() subtractProduct: EventEmitter<Product> = new EventEmitter();
   constructor() { }
 
   ngOnInit(): void {

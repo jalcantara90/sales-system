@@ -1,0 +1,20 @@
+<app-ticket
+  [ticket]="ticket$ | async"
+  (addProduct)="addProductTicket($event)"
+  (subtractProduct)="removeProductTicket($event)">
+</app-ticket>
+<app-coupon-code (applyDiscount)="addDiscount($event)"></app-coupon-code>
+<app-resume [ticket]="ticket$ | async" (removeDiscount)="removeDiscount($event)">
+</app-resume>
+
+<div class="flex mt-5">
+  <button
+    (click)="resetTicket()"
+    class="intro-x button w-32 border border-gray-400 duration-300 text-gray-600 hover:bg-gray-700 hover:text-white">
+    Clear Items
+  </button>
+  <button
+    class="intro-x w-32 bg-gradient-to-r button duration-300 text-white bg-blue-800 shadow-md hover:bg-blue-700 ml-auto">
+    Charge
+  </button>
+</div>

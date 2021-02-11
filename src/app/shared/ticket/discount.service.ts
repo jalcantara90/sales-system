@@ -1,5 +1,6 @@
 import { Discount, PercentDiscount, FixDiscount, TaxFreeDiscount } from './ticket.model';
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class DiscountService {
@@ -10,9 +11,24 @@ export class DiscountService {
     new TaxFreeDiscount('FREETAX')
   ];
 
+  private discountNotMatch = new Subject() ;
+  private discountMatch = new Subject();
+
+  public discountNotMatch$ = this.discountNotMatch.asObservable();
+  public discountMatch$ = this.discountMatch.asObservable();
+
   constructor() {}
 
   public checkDiscountCode(code: string): Discount {
-    return this.discounList.find(discount => discount.code === code);
+    const discount = this.discounList.find(discount => discount.code === code);
+
+    discount ? this.discountMatch.next() : this.notMatch();
+
+    return discount;
+  }
+
+  private notMatch() {
+    this.discountNotMatch.next('NOTMATCH');
+    setTimeout(() => this.discountNotMatch.next(), 1500);
   }
 }

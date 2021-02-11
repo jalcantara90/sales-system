@@ -18,7 +18,6 @@ const routes: Routes = [
       {
         path: 'sale-point',
         loadChildren: () => import('./sale-point/sale-point.module').then((m) => m.SalePointModule),
-        pathMatch: 'full',
         data: {
           title: 'Point of sales'
         }
@@ -39,7 +38,7 @@ const routes: Routes = [
           title: 'Invoices'
         }
       },
-      { path: '**', redirectTo: 'dashboard' },
+      { path: '**', redirectTo: 'sale-point/ticket' },
     ],
   },
 ];

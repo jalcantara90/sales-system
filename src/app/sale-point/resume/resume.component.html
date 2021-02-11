@@ -7,7 +7,7 @@
     <div class="mr-auto flex items-center duration-300">
       <i class="material-icons text-red-600 mr-2 cursor-pointer" (click)="removeDiscount.emit(discount)">clear</i>
       Discount
-      <span *ngIf="discount.code"> -
+      <span class="ml-1" *ngIf="discount.code"> -
         <span class="text-purple-600">
           {{discount.code}}
         </span>
@@ -31,7 +31,6 @@
     <div class="font-medium text-base">{{ticket.total | currency:'EUR'}}</div>
   </div>
 </div>
-
 
 <ng-template #fixDiscount let-discount>
   <div class="text-theme-6"> - {{discount | currency:'EUR'}}</div>

@@ -11,10 +11,26 @@ import { TicketComponent } from './ticket/ticket.component';
 import { CouponCodeComponent } from './coupon-code/coupon-code.component';
 import { ResumeComponent } from './resume/resume.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { RightWidgetComponent } from './right-widget/right-widget.component';
+import { TicketTabComponent } from './ticket-tab/ticket-tab.component';
+import { DetailTabComponent } from './detail-tab/detail-tab.component';
+import { ProductFilterPipe } from '../shared/product/product-filter.pipe';
 
 @NgModule({
-  declarations: [SalePointComponent, ProductTypeSelectionComponent, ProductFiltersComponent, ProductGridComponent, RightWidgetSelectorComponent, TicketComponent, CouponCodeComponent, ResumeComponent],
+  declarations: [
+    SalePointComponent,
+    ProductTypeSelectionComponent,
+    ProductFiltersComponent,
+    ProductGridComponent,
+    RightWidgetSelectorComponent,
+    TicketComponent,
+    CouponCodeComponent,
+    ResumeComponent,
+    RightWidgetComponent,
+    TicketTabComponent,
+    DetailTabComponent,
+    ProductFilterPipe
+  ],
   imports: [
     CommonModule,
     SalePointRoutingModule,

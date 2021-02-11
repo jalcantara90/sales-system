@@ -3,3 +3,19 @@ i {
   color: #5b94f6;
   cursor: pointer;
 }
+
+.pos__item__ticket {
+  @apply flex;
+  @apply duration-300;
+  @apply ease-in-out;
+  @apply bg-white;
+  @apply rounded-md;
+  @apply items-center;
+  @apply p-3;
+  @apply cursor-pointer;
+  @apply transition;
+
+  &:hover {
+    @apply bg-gray-200;
+  }
+}

@@ -73,7 +73,13 @@ export class Ticket {
     return this.amountItems * this.parseTaxPercent;
   }
 
-  constructor(public tax: number = 21) {}
+  constructor(
+    public bookingName: string,
+    public people: number,
+    public table: number,
+    public bookDate: Date = new Date(),
+    public tax: number = 21
+  ) {}
 
   public addItem(product: Product): void {
     const existenProduct = this.itemList.find(item => item.product.id === product.id);

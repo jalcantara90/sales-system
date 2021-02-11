@@ -1,18 +1,18 @@
 <div class="pos__ticket box p-2 mt-5" @enterRight>
-  <ng-container *ngIf="ticket.itemList.length; else voidTicket">
+  <ng-container *ngIf="ticket?.itemList.length; else voidTicket">
     <div *ngFor="let item of ticket.itemList; trackBy: trackByProductId"
-      class="flex items-center p-3 cursor-pointer transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md">
-      <i class="material-icons mr-2 zoom-in" (click)="substractProduct.emit(item.product)">remove_circle</i>
+      class="pos__item__ticket">
+      <i class="add-product material-icons mr-2 zoom-in" (click)="subtractProduct.emit(item.product)">remove_circle</i>
       <div class="pos__ticket__item-name truncate mr-1">{{item.product.name}}</div>
-      <div class="text-gray-600 mr-2">x {{item.qty}}</div>
+      <div class="quantity text-gray-600 mr-2">x {{item.qty}}</div>
       <div class="ml-auto flex items-center">
         {{item.total | currency:'EUR':'symbol-narrow':'1.2-2'}}
-        <i class="material-icons ml-2 zoom-in" (click)="addProduct.emit(item.product)">add_circle</i>
+        <i class="subtrac-product material-icons ml-2 zoom-in" (click)="addProduct.emit(item.product)">add_circle</i>
       </div>
     </div>
   </ng-container>
 </div>
 
 <ng-template #voidTicket>
-  <p class="text-center">Your order is void, start choosing some food</p>
+  <p class="text-center">Your order is empty, start choosing some food</p>
 </ng-template>

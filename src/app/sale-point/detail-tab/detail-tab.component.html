@@ -1,0 +1,30 @@
+<div class="box p-5 mt-5" *ngIf="ticket$ | async as ticket">
+  <div class="flex items-center border-b pb-5">
+    <div class="">
+      <div class="text-gray-600">Time</div>
+      <div>{{ticket.bookDate | date:'medium':'es'}} </div>
+    </div>
+    <i data-feather="clock" class="w-4 h-4 text-gray-600 ml-auto"></i>
+  </div>
+  <div class="flex items-center border-b py-5">
+    <div class="">
+      <div class="text-gray-600">Customer</div>
+      <div>{{ticket.bookingName}}</div>
+    </div>
+    <i data-feather="user" class="w-4 h-4 text-gray-600 ml-auto"></i>
+  </div>
+  <div class="flex items-center border-b py-5">
+    <div class="">
+      <div class="text-gray-600">People</div>
+      <div>{{ticket.people}}</div>
+    </div>
+    <i data-feather="users" class="w-4 h-4 text-gray-600 ml-auto"></i>
+  </div>
+  <div class="flex items-center pt-5">
+    <div class="">
+      <div class="text-gray-600">Table</div>
+      <div>{{ticket.table}}</div>
+    </div>
+    <i data-feather="mic" class="w-4 h-4 text-gray-600 ml-auto"></i>
+  </div>
+</div>
