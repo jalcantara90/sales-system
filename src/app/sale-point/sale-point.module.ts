@@ -1,3 +1,4 @@
+import { OverlayModule } from '@angular/cdk/overlay';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -34,7 +35,8 @@ import { ProductFilterPipe } from '../shared/product/product-filter.pipe';
   imports: [
     CommonModule,
     SalePointRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    OverlayModule
   ]
 })
 export class SalePointModule { }

@@ -5,12 +5,22 @@
   <div class="w-full sm:w-auto flex mt-4 sm:mt-0 gap-2">
     <button class="-intro-x bg-gradient-to-r button duration-300 from-purple-600 hover:from-purple-500 hover:to-purple-600 shadow-md text-white to-purple-700">New Order</button>
     <div class="-intro-x pos-dropdown dropdown relative ml-auto sm:ml-0">
-      <button class="dropdown-toggle button px-2 box text-gray-700">
+      <button class="dropdown-toggle button px-2 box text-gray-700" (click)="open($event)">
         <span class="w-5 h-5 flex items-center justify-center"> <i class="material-icons">expand_more</i> </span>
       </button>
     </div>
   </div>
 </div>
+
+<ng-template #ticketMenu>
+  <div class="pos-dropdown__dropdown-box dropdown-box">
+    <div class="dropdown-box__content box p-2">
+      <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md"> <i class="material-icons">show_chart</i> <span class="truncate">INV-0206020 - Robert De Niro</span> </a>
+      <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md"> <i class="material-icons">show_chart</i> <span class="truncate">INV-0206022 - Robert De Niro</span> </a>
+      <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md"> <i class="material-icons">show_chart</i> <span class="truncate">INV-0206021 - Kevin Spacey</span> </a>
+    </div>
+  </div>
+</ng-template>
 
 <div class="pos intro-y grid grid-cols-12 gap-5 mt-5">
   <div class="intro-y col-span-12 lg:col-span-8">

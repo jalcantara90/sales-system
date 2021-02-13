@@ -32,7 +32,8 @@
             ],
             "styles": [
               "src/styles.scss",
-              "src/assets/styles/midone.scss"
+              "src/assets/styles/midone.scss",
+              "node_modules/@angular/cdk/overlay-prebuilt.css"
             ],
             "scripts": []
           },
