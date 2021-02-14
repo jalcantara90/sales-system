@@ -3,6 +3,7 @@ import { Discount, Ticket } from './../../shared/ticket/ticket.model';
 import { Product } from './../../shared/product/product.model';
 import { TicketService } from './../../shared/ticket/ticket.service';
 import { Component, OnInit } from '@angular/core';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-ticket-tab',
@@ -15,7 +16,7 @@ export class TicketTabComponent implements OnInit {
   constructor(private ticketService: TicketService) { }
 
   ngOnInit(): void {
-    this.ticket$ = this.ticketService.ticket$;
+    this.ticket$ = this.ticketService.ticket$.pipe(map(booking => booking.order));
   }
 
   addProductTicket(product: Product) {

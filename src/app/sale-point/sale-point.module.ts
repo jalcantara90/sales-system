@@ -1,4 +1,3 @@
-import { OverlayModule } from '@angular/cdk/overlay';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -12,6 +11,7 @@ import { TicketComponent } from './ticket/ticket.component';
 import { CouponCodeComponent } from './coupon-code/coupon-code.component';
 import { ResumeComponent } from './resume/resume.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ContextMenuModule } from './../shared/context-menu/context-menu.module';
 import { RightWidgetComponent } from './right-widget/right-widget.component';
 import { TicketTabComponent } from './ticket-tab/ticket-tab.component';
 import { DetailTabComponent } from './detail-tab/detail-tab.component';
@@ -36,7 +36,8 @@ import { ProductFilterPipe } from '../shared/product/product-filter.pipe';
     CommonModule,
     SalePointRoutingModule,
     ReactiveFormsModule,
-    OverlayModule
+    ContextMenuModule
+
   ]
 })
 export class SalePointModule { }

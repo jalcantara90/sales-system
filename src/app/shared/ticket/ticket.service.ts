@@ -1,58 +1,95 @@
+import { bookingList } from './ticket-list';
 import { DiscountService } from './discount.service';
-import { Discount, Ticket } from './ticket.model';
+import { Discount } from './ticket.model';
 import { Injectable } from "@angular/core";
-import { BehaviorSubject } from "rxjs";
-import { beefRamen, shrimpsRamen, sake, water} from '../product/product-list';
+import { BehaviorSubject, combineLatest } from "rxjs";
 import { Product } from '../product/product.model';
-
-const ticket = new Ticket('Leonardo DiCaprio', 4, 21);
-ticket.addItem(beefRamen);
-ticket.addItem(shrimpsRamen);
-ticket.addItem(sake);
-ticket.addItem(water);
-ticket.addItem(sake);
+import { Booking } from './booking.model';
+import { map, tap } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class TicketService {
-  private ticket = new BehaviorSubject(ticket);
-  public ticket$ = this.ticket.asObservable();
+  private bookingList = new BehaviorSubject(bookingList);
+  private selectedBookingId: BehaviorSubject<string> = new BehaviorSubject(bookingList[0].bookingId);
+  public bookingList$ = this.bookingList.asObservable();
+
+  public ticket$ = combineLatest([
+    this.bookingList$,
+    this.selectedBookingId.asObservable()
+  ]).pipe(
+    tap(console.log),
+    map(([bookingList, bookingId]) =>
+      bookingList.find((booking: Booking) => booking.bookingId === bookingId)
+    ),
+    tap(console.log)
+  );
 
   constructor(private discountService: DiscountService) {}
 
+  addBooking(newBooking: Booking) {
+    const bookingList = this.bookingList.getValue();
+    bookingList.push(newBooking);
+    this.bookingList.next(bookingList);
+  }
+
+  selectBooking(bookingId: string) {
+    this.selectedBookingId.next(bookingId);
+  }
+
   addProductTicket(product: Product): void {
-    const ticket = this.ticket.getValue();
-    ticket.addItem(product);
-    this.ticket.next(ticket);
+    const booking = this.findSelectedBooking();
+    booking.order.addItem(product);
+    this.updateBookingList(booking);
   }
 
   removeProductTicket(product: Product): void {
-    const ticket = this.ticket.getValue();
-    ticket.removeItem(product);
-    this.ticket.next(ticket);
+    const booking = this.findSelectedBooking();
+    booking.order.removeItem(product);
+    this.updateBookingList(booking);
   }
 
   addDiscount(code: string): void {
-    const ticket = this.ticket.getValue();
-    if (ticket.discountList.some(d => d.code === code)) {
+    const booking = this.findSelectedBooking();
+    if (booking.order.discountList.some(d => d.code === code)) {
       return ;
     }
 
     const discount = this.discountService.checkDiscountCode(code);
 
     if (discount) {
-      ticket.addDiscount(discount);
+      booking.order.addDiscount(discount);
     }
 
-    this.ticket.next(ticket);
+    this.updateBookingList(booking);
   }
 
   removeDiscount(discount: Discount): void {
-    let ticket = this.ticket.getValue();
-    ticket = ticket.removeDiscount(discount);
-    this.ticket.next(ticket);
+    const booking = this.findSelectedBooking();
+    booking.order = booking.order.removeDiscount(discount);
+    this.updateBookingList(booking);
   }
 
   resetTicket(): void {
-    this.ticket.next(new Ticket('Leonardo DiCaprio', 4, 21));
+    const booking = this.findSelectedBooking();
+    booking.order = booking.order.reset();
+    this.updateBookingList(booking);
+  }
+
+  private findSelectedBooking() {
+    const bookingId = this.selectedBookingId.getValue();
+    const bookingList = this.bookingList.getValue();
+
+    return bookingList.find(booking => booking.bookingId === bookingId);
+  }
+
+  updateBookingList(booking: Booking) {
+    const bookingList = this.bookingList.getValue().map((b) => {
+      if (b.bookingId === booking.bookingId) {
+        b = booking;
+      }
+
+      return b;
+    });
+    this.bookingList.next(bookingList);
   }
 }

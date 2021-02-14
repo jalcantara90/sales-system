@@ -1,7 +1,9 @@
+import { Booking } from './../../shared/ticket/booking.model';
 import { Observable } from 'rxjs';
 import { TicketService } from './../../shared/ticket/ticket.service';
 import { Component, OnInit } from '@angular/core';
 import { Ticket } from '../../shared/ticket/ticket.model';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-detail-tab',
@@ -10,7 +12,7 @@ import { Ticket } from '../../shared/ticket/ticket.model';
 })
 export class DetailTabComponent implements OnInit {
 
-  ticket$: Observable<Ticket>;
+  ticket$: Observable<Booking>;
 
   constructor(private ticketService: TicketService) { }
 
