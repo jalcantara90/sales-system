@@ -1,29 +1,53 @@
-import { FormControl } from '@angular/forms';
-import { Component, OnInit, Output } from '@angular/core';
-import { throttleTime } from 'rxjs/operators';
+import { ControlValueAccessor, FormControl, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Component, forwardRef, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-product-filters',
   templateUrl: './product-filters.component.html',
-  styleUrls: ['./product-filters.component.scss']
+  styleUrls: ['./product-filters.component.scss'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => ProductFiltersComponent),
+      multi: true
+    }
+  ]
 })
-export class ProductFiltersComponent implements OnInit {
-  select = new FormControl();
-  input = new FormControl();
+export class ProductFiltersComponent implements OnInit, OnDestroy, ControlValueAccessor {
+  productFilters = new FormGroup({
+    search: new FormControl(''),
+    order: new FormControl(null)
+  });
 
-  @Output('selectChange') get selectChange() {
-    return this.select.valueChanges;
-  }
+  searchSub = new Subscription();
 
-  @Output('searchChange') get searchChange() {
-    return this.input.valueChanges.pipe(
-      throttleTime(300)
-    );
-  }
+  public onChange: any = (_: any) => {};
+  public onTouch: any = () => {};
 
   constructor() { }
 
   ngOnInit(): void {
+    this.searchSub = this.productFilters.valueChanges.subscribe(filters => {
+      this.onChange(filters);
+      this.onTouch();
+    });
   }
 
+  ngOnDestroy(): void {
+    this.searchSub.unsubscribe();
+  }
+
+  writeValue(filters: { search: string, order: string }): void {
+    this.productFilters.setValue(filters);
+    this.onChange(filters);
+  }
+
+  registerOnChange(fn: any): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: any): void {
+    this.onTouch = fn;
+  }
 }

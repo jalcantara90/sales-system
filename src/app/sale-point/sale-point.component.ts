@@ -1,12 +1,12 @@
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { TicketService } from './../shared/ticket/ticket.service';
 import { Component, OnInit, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { Product } from '../shared/product/product.model';
 import { productList } from './../shared/product/product-list';
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { TemplatePortal } from '@angular/cdk/portal';
-import { fromEvent, Subscription } from 'rxjs';
-import { filter, take } from 'rxjs/operators';
+import { Subscription, Observable } from 'rxjs';
+import { map, throttleTime, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-sale-point',
@@ -15,10 +15,18 @@ import { filter, take } from 'rxjs/operators';
 })
 export class SalePointComponent implements OnInit {
   public productList: Product[] = productList;
-  isOpen = false;
-  filters = new FormControl([]);
-  sub: Subscription = new Subscription();
 
+  filters = new FormControl([]);
+  searchAndOrder = new FormControl({ search: '', order: null });
+
+  filtersAndOrder = new FormGroup({
+    filters: new FormControl([]),
+    searchAndOrder: new FormControl({ search: '', order: null })
+  });
+
+  filter$;
+  order$: Observable<string>;
+  sub: Subscription = new Subscription();
 
   constructor(
     private ticketService: TicketService,
@@ -27,7 +35,22 @@ export class SalePointComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.filters.valueChanges.subscribe(console.log);
+
+
+    this.filter$ = this.filtersAndOrder.valueChanges.pipe(
+      startWith({
+        filters: [],
+        order: null,
+        search: ''
+      }),
+      throttleTime(300),
+      map((filtersAndOrder) => {
+        return {
+          filters: filtersAndOrder.filters,
+          ...filtersAndOrder.searchAndOrder
+        }
+      })
+    );
   }
 
   addProductTicket(product: Product): void {

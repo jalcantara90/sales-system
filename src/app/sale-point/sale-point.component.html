@@ -15,19 +15,19 @@
 <ng-template #ticketMenu>
   <div class="pos-dropdown__dropdown-box dropdown-box">
     <div class="dropdown-box__content box p-2">
-      <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md"> <i class="material-icons">show_chart</i> <span class="truncate">INV-0206020 - Robert De Niro</span> </a>
-      <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md"> <i class="material-icons">show_chart</i> <span class="truncate">INV-0206022 - Robert De Niro</span> </a>
-      <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md"> <i class="material-icons">show_chart</i> <span class="truncate">INV-0206021 - Kevin Spacey</span> </a>
+      <a href="" class="flex items-center p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md"> <i class="material-icons">show_chart</i> <span class="truncate">INV-0206020 - Robert De Niro</span> </a>
+      <a href="" class="flex items-center p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md"> <i class="material-icons">show_chart</i> <span class="truncate">INV-0206022 - Robert De Niro</span> </a>
+      <a href="" class="flex items-center p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md"> <i class="material-icons">show_chart</i> <span class="truncate">INV-0206021 - Kevin Spacey</span> </a>
     </div>
   </div>
 </ng-template>
 
-<div class="pos intro-y grid grid-cols-12 gap-5 mt-5">
+<div class="pos intro-y grid grid-cols-12 gap-5 mt-5" [formGroup]="filtersAndOrder">
   <div class="intro-y col-span-12 lg:col-span-8">
-    <app-product-filters></app-product-filters>
-    <app-product-type-selection [formControl]="filters"></app-product-type-selection>
+    <app-product-filters formControlName="searchAndOrder"></app-product-filters>
+    <app-product-type-selection formControlName="filters"></app-product-type-selection>
     <app-product-grid
-      [productList]="productList | productFilter:filters.value"
+      [productList]="productList | productFilter:(filter$ | async)"
       (addItemTicket)="addProductTicket($event)">
     </app-product-grid>
   </div>
