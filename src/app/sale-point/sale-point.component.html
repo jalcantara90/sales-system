@@ -3,7 +3,11 @@
     Point of Sale
   </h2>
   <div class="w-full sm:w-auto flex mt-4 sm:mt-0 gap-2">
-    <button class="-intro-x bg-gradient-to-r button duration-300 from-purple-600 hover:from-purple-500 hover:to-purple-600 shadow-md text-white to-purple-700">New Order</button>
+    <button
+      (click)="openOrderForm()"
+      class="-intro-x bg-gradient-to-r button duration-300 from-purple-600 hover:from-purple-500 hover:to-purple-600 shadow-md text-white to-purple-700">
+      New Order
+    </button>
     <div class="-intro-x pos-dropdown dropdown relative ml-auto sm:ml-0">
       <button class="dropdown-toggle button px-2 box text-gray-700" [contextMenu]="ticketMenu">
         <span class="w-5 h-5 flex items-center justify-center"> <i class="material-icons">expand_more</i> </span>
@@ -31,7 +35,7 @@
     <app-product-filters formControlName="searchAndOrder"></app-product-filters>
     <app-product-type-selection formControlName="filters"></app-product-type-selection>
     <app-product-grid
-      [productList]="productList | productFilter:(filter$ | async)"
+      [productList]="(productList$ | async) | productFilter:(filter$ | async)"
       (addItemTicket)="addProductTicket($event)">
     </app-product-grid>
   </div>

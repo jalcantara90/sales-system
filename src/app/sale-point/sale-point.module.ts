@@ -16,6 +16,7 @@ import { RightWidgetComponent } from './right-widget/right-widget.component';
 import { TicketTabComponent } from './ticket-tab/ticket-tab.component';
 import { DetailTabComponent } from './detail-tab/detail-tab.component';
 import { ProductFilterPipe } from '../shared/product/product-filter.pipe';
+import { OrderFormComponent } from './order-form/order-form.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ProductFilterPipe } from '../shared/product/product-filter.pipe';
     RightWidgetComponent,
     TicketTabComponent,
     DetailTabComponent,
-    ProductFilterPipe
+    ProductFilterPipe,
+    OrderFormComponent
   ],
   imports: [
     CommonModule,

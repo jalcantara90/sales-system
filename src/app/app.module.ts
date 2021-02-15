@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { DialogModule } from '@ngneat/dialog';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,15 @@ import { AppComponent } from './app.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     CoreModule,
-    HttpClientModule
+    HttpClientModule,
+    DialogModule.forRoot({
+      sizes: {
+        sm: {
+          width: '300px',
+          height: '250px'
+        }
+      }
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

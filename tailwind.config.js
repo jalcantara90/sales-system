@@ -10,7 +10,8 @@ module.exports = (isProd) => ({
       position: ['responsive', 'hover'],
       padding: ['responsive', 'last'],
       margin: ['responsive', 'last'],
-      borderWidth: ['responsive', 'last']
+      borderWidth: ['responsive', 'last'],
+      opacity: ['disabled']
     },
     theme: {
       extend: {

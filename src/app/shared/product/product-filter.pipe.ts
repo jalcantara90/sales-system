@@ -1,11 +1,6 @@
 import { FoodOrBeverageType, Product } from './product.model';
 import { Pipe, PipeTransform } from "@angular/core";
-
-interface ProductFilters {
-  filters: FoodOrBeverageType[];
-  order: string;
-  search: string;
-}
+import { ProductFilters } from './product-filter.interface';
 
 @Pipe({ name: 'productFilter'})
 export class ProductFilterPipe implements PipeTransform {

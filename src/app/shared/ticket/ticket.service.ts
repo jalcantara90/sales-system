@@ -5,7 +5,7 @@ import { Injectable } from "@angular/core";
 import { BehaviorSubject, combineLatest } from "rxjs";
 import { Product } from '../product/product.model';
 import { Booking } from './booking.model';
-import { map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class TicketService {
@@ -17,11 +17,9 @@ export class TicketService {
     this.bookingList$,
     this.selectedBookingId.asObservable()
   ]).pipe(
-    tap(console.log),
     map(([bookingList, bookingId]) =>
       bookingList.find((booking: Booking) => booking.bookingId === bookingId)
-    ),
-    tap(console.log)
+    )
   );
 
   constructor(private discountService: DiscountService) {}
@@ -30,6 +28,11 @@ export class TicketService {
     const bookingList = this.bookingList.getValue();
     bookingList.push(newBooking);
     this.bookingList.next(bookingList);
+    this.selectedBookingId.next(newBooking.bookingId);
+  }
+
+  updateBooking(booking: Booking) {
+    this.updateBookingList(booking);
   }
 
   selectBooking(bookingId: string) {
