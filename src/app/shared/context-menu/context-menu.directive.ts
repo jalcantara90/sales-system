@@ -3,6 +3,8 @@ import { OverlayRef, Overlay, FlexibleConnectedPositionStrategy } from '@angular
 import { TemplatePortal } from '@angular/cdk/portal';
 import { Directive, ViewContainerRef, TemplateRef, Input, AfterViewInit, ElementRef, OnDestroy } from '@angular/core';
 
+const OFFSET = 25;
+
 @Directive({
   selector: '[contextMenu]'
 })
@@ -39,6 +41,8 @@ export class ContextMenuDirective implements AfterViewInit, OnDestroy {
   }
 
   private overlayPosition(x: number, y: number): FlexibleConnectedPositionStrategy {
+    x += OFFSET;
+    y += OFFSET;
     return this.overlay.position()
     .flexibleConnectedTo({ x, y })
     .withPositions([

@@ -9,15 +9,24 @@ import { map, throttleTime, startWith, filter } from 'rxjs/operators';
 import { Booking } from '../shared/ticket/booking.model';
 import { Observable } from 'rxjs';
 import { DialogService } from '@ngneat/dialog';
+import { trigger, transition, style, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-sale-point',
   templateUrl: './sale-point.component.html',
-  styleUrls: ['./sale-point.component.scss']
+  styleUrls: ['./sale-point.component.scss'],
+  animations: [
+    trigger('enterContextualMenu', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(50px)' }),
+        animate('.4s ease-in-out', style({ opacity: 1, transform: 'translateY(0px)' }))
+      ]),
+    ])
+  ]
 })
 export class SalePointComponent implements OnInit {
-  bookingList$: Observable<Booking[]> ;
-  productList$: Observable<Product[]> ;
+  bookingList$: Observable<Booking[]>;
+  productList$: Observable<Product[]>;
 
   filtersAndOrder = new FormGroup({
     filters: new FormControl([]),

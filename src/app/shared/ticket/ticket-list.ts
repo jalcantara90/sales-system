@@ -1,7 +1,7 @@
 import { beefRamen, shrimpsRamen, sake, water } from "../product/product-list";
 import { Booking } from "./booking.model";
 
-export const booking1 = new Booking('Leonardo DiCaprio', 4, 21);
+export const booking1 = new Booking('Netanel Basal', 4, 21);
 booking1.order.addItem(beefRamen);
 booking1.order.addItem(shrimpsRamen);
 booking1.order.addItem(sake);

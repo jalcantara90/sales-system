@@ -17,7 +17,7 @@
 </div>
 
 <ng-template #ticketMenu>
-  <div class="pos-dropdown__dropdown-box dropdown-box">
+  <div @enterContextualMenu class="pos-dropdown__dropdown-box dropdown-box">
     <div class="dropdown-box__content box p-2">
       <a
         *ngFor="let booking of bookingList$ | async"
