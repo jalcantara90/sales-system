@@ -11,11 +11,5 @@ export const enterRight = trigger('enterRight', [
         animate('.4s ease-in-out', EnterStyle)
       ]),
     ], { optional: true }),
-  ]),
-  transition(':leave', [
-    query(':leave', [
-      EnterStyle,
-      stagger('100ms', [animate('.2s ease-in-out', ExitStyle)]),
-    ]),
-  ]),
+  ])
 ]);

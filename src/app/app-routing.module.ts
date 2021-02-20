@@ -9,7 +9,7 @@ const routes: Routes = [
     children: [
       {
         path: 'dashboard',
-        loadChildren: () => import('./dasboard/dasboard.module').then((m) => m.DasboardModule),
+        loadChildren: () => import('./dashboard/dashboard.module').then((m) => m.DasboardModule),
         pathMatch: 'full',
         data: {
           title: 'Dashboard'

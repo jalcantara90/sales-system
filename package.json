@@ -23,6 +23,7 @@
     "@ngneat/dialog": "^1.4.1",
     "@ngneat/spectator": "^7.0.0",
     "@ngneat/tailwind": "^1.1.0",
+    "chart.js": "^2.9.4",
     "rxjs": "~6.6.3",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"

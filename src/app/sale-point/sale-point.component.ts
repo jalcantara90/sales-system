@@ -19,7 +19,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
     trigger('enterContextualMenu', [
       transition(':enter', [
         style({ opacity: 0, transform: 'translateY(50px)' }),
-        animate('.4s ease-in-out', style({ opacity: 1, transform: 'translateY(0px)' }))
+        animate('.2s ease-in-out', style({ opacity: 1, transform: 'translateY(0px)' }))
       ]),
     ])
   ]

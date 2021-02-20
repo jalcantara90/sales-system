@@ -11,11 +11,5 @@ export const enterDown = trigger('enterDown', [
         animate('.4s ease-in-out', EnterStyle)
       ]),
     ]),
-  ]),
-  transition(':leave', [
-    query(':leave', [
-      EnterStyle,
-      stagger('100ms', [animate('.2s ease-in-out', ExitStyle)]),
-    ]),
-  ]),
+  ])
 ]);
