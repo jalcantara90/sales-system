@@ -4,3 +4,9 @@
 @import 'tailwindcss/utilities';
 /* You can add global styles to this file, and also import other style files */
 //@import 'assets/styles/midone.scss';
+
+.search__icon {
+  top: .6rem;
+  right: 10px;
+  @apply text-gray-400;
+}

@@ -4,7 +4,7 @@ module.exports = (isProd) => ({
       enabled: isProd,
       content: ['**/*.html', '**/*.ts']
     },
-    darkMode: false, // or 'media' or 'class'
+    darkMode: 'class', // or 'media' or 'class'
     variants: {
       zIndex: ['responsive', 'hover'],
       position: ['responsive', 'hover'],

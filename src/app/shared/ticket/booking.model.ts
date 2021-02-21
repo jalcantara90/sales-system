@@ -20,7 +20,11 @@ export class Booking {
     return bookingId.toString().padStart(6, '0');
   }
 
+  get id (): string {
+    return `ORD-${this.bookingId}`;
+  }
+
   get bookingInfo(): string {
-    return `INV-${this.bookingId} - ${this.bookingName}`;
+    return `${this.id} - ${this.bookingName}`;
   }
 }

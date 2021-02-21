@@ -53,6 +53,7 @@ export class TaxFreeDiscount implements Discount {
 export class Ticket {
   public itemList: TicketItem[] = [];
   public discountList: Discount[] = [];
+  public charged: boolean = false;
 
   get totalWithoutTaxOrDiscount(): number {
     return this.itemList

@@ -42,7 +42,10 @@ export class SalePointComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.bookingList$ = this.ticketService.bookingList$;
+    this.bookingList$ = this.ticketService.bookingList$.pipe(
+      map(booking => booking.filter(b => !b.order.charged))
+    );
+
     this.productList$ = this.productService.productList$;
 
     this.filter$ = this.filtersAndOrder.valueChanges.pipe(

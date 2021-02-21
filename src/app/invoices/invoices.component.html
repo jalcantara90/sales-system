@@ -1,1 +1,37 @@
-<a [routerLink]="['1']"> go to invoice 1</a>
+<div class="flex">
+  <h2 class="intro-y text-lg font-medium mt-10">Orders</h2>
+</div>
+<div class="flex gap-4 hv-80">
+  <div class="grid grid-cols-12 gap-6 mt-5" [@toogle]="show">
+
+    <div class="filters flex gap-6">
+      <div class="relative -intro-x search__box">
+        <input [formControl]="search" type="text" class="input input--lg w-full lg:w-64 box pr-10 placeholder-theme-13" placeholder="Search by id or booking name">
+        <i class="material-icons search__icon absolute inset-y-0">search</i>
+      </div>
+      <select [formControl]="status" class="input input--lg box w-full lg:w-auto mt-3 lg:mt-0 ml-auto -intro-x">
+        <option [value]="null">All status</option>
+        <option value="charged">Charged</option>
+        <option value="pending">Pending</option>
+      </select>
+    </div>
+    <div class="intro-y col-span-12 overflow-auto lg:overflow-visible hv-60">
+      <app-order-list
+        [bookingList]="bookingList$ | async | bookingFilter:search.value:status.value"
+        (selectBooking)="bookingSelected($event)">
+      </app-order-list>
+    </div>
+
+    <app-pagination class="col-span-12"></app-pagination>
+  </div>
+
+  <div [@expanded]="show"
+    (@expanded.done)="closeDetail($event)"
+    class="overflow-y-scroll">
+    <app-order-resume
+      *ngIf="booking"
+      [booking]="booking"
+      (close)="collapse()">
+    </app-order-resume>
+  </div>
+</div>

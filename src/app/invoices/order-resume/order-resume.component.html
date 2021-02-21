@@ -1,0 +1,75 @@
+<div class="intro-y box overflow-hidden mt-5">
+  <div class="border-b border-gray-200 text-center sm:text-left relative">
+    <div class="absolute right-2 top-2">
+      <button class="button" (click)="close.emit()">
+        <i class="material-icons">close</i>
+      </button>
+    </div>
+    <div class="px-5 py-10 sm:px-20 sm:py-20">
+      <div class="text-theme-1 font-semibold text-3xl">Order</div>
+      <div class="mt-2">Order <span class="font-medium">{{booking.id}}</span></div>
+      <div class="mt-1">{{booking.bookingDate | date: 'short'}}</div>
+    </div>
+    <div class="flex flex-col lg:flex-row px-5 sm:px-20 pt-10 pb-10 sm:pb-20">
+      <div class="">
+        <div class="text-base text-gray-600">Order Details</div>
+        <div class="text-lg font-medium text-theme-1 mt-2">
+          {{booking.bookingName}}
+        </div>
+      </div>
+      <div class="lg:text-right mt-10 lg:mt-0 lg:ml-auto">
+        <div class="text-base text-gray-600">Table detail</div>
+        <div class="text-lg font-medium text-theme-1 mt-2">Table {{ booking.table }}</div>
+        <div class="mt-1">People {{booking.people}}</div>
+      </div>
+    </div>
+  </div>
+  <ng-container *ngIf="booking.order.itemList.length">
+    <div class="px-5 sm:px-16 py-10 sm:py-20">
+      <div class="overflow-x-auto">
+        <table class="table">
+          <thead>
+            <tr>
+              <th class="border-b-2 whitespace-no-wrap">Product</th>
+              <th class="border-b-2 text-right whitespace-no-wrap">QTY</th>
+              <th class="border-b-2 text-right whitespace-no-wrap">PRICE</th>
+              <th class="border-b-2 text-right whitespace-no-wrap">SUBTOTAL</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let orderItem of booking.order.itemList">
+              <td class="border-b">
+                <div class="font-medium whitespace-no-wrap">
+                  {{orderItem.product.name}}
+                </div>
+              </td>
+              <td class="text-right border-b w-32">{{orderItem.qty}}</td>
+              <td class="text-right border-b w-32">{{orderItem.product.price}}€/U</td>
+              <td class="text-right border-b w-32 font-medium">{{orderItem.total}} €</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="px-5 sm:px-20 pb-10 sm:pb-20 flex flex-col-reverse sm:flex-row">
+      <div class="text-center sm:text-right sm:ml-auto">
+        <div class="text-base text-gray-600">Total without tax and discounts</div>
+        <div class="text-xl text-theme-1 font-medium mt-2">
+          {{ booking.order.totalWithoutTaxOrDiscount}} €
+        </div>
+
+        <div class="text-base text-gray-600">Tax</div>
+        <div class="text-xl text-theme-1 font-medium mt-2">+ {{booking.order.tax}}%</div>
+
+        <div class="text-base text-gray-600" *ngIf="booking.order.discountList.length">Discounts</div>
+        <div class="text-xl text-theme-1 font-medium mt-2" *ngFor="let discount of booking.order.discountList">
+          {{discount.code}}
+        </div>
+
+        <div class="text-base text-gray-600">Total amount</div>
+        <div class="text-xl text-theme-1 font-medium mt-2">{{booking.order.total}} €</div>
+      </div>
+    </div>
+  </ng-container>
+</div>

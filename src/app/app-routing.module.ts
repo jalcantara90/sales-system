@@ -23,15 +23,6 @@ const routes: Routes = [
         }
       },
       {
-        path: 'upload-product',
-        loadChildren: () =>
-          import('./upload-product/upload-product.module').then((m) => m.UploadProductModule),
-        pathMatch: 'full',
-        data: {
-          title: 'Upload products'
-        }
-      },
-      {
         path: 'invoices',
         loadChildren: () => import('./invoices/invoices.module').then((m) => m.InvoicesModule),
         data: {

@@ -1,0 +1,44 @@
+<table class="table table-report -mt-2">
+  <thead>
+    <tr>
+      <th class="whitespace-no-wrap">BOOKING INFO</th>
+      <th class="text-center whitespace-no-wrap">AMOUNT</th>
+      <th class="text-center whitespace-no-wrap">STATUS</th>
+      <th class="text-center whitespace-no-wrap">ACTIONS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr (click)="selectBooking.emit(booking)" class="intro-x" *ngFor="let booking of bookingList">
+      <td>
+        <div href="" class="font-medium whitespace-no-wrap flex items-center gap-2">
+          {{booking.bookingName}}
+          <div class="text-gray-600 text-xs whitespace-no-wrap">
+            {{booking.id}}
+          </div>
+        </div>
+      </td>
+      <td class="text-center">{{booking.order.amountItems}}€</td>
+      <td class="w-40">
+        <div
+          [ngClass]="{
+            'text-theme-9': booking.order.charged,
+            'text-theme-6': !booking.order.charged
+          }"
+          class="flex items-center justify-center">
+          {{booking.order.charged ? 'Charged' : 'Pending'}}
+        </div>
+      </td>
+      <td class="table-report__action w-56">
+        <div class="flex justify-center items-center">
+          <a
+            class="flex items-center text-theme-6"
+            data-toggle="modal"
+            data-target="#delete-confirmation-modal">
+            <i data-feather="trash-2" class="w-4 h-4 mr-1"></i> Delete
+          </a>
+        </div>
+      </td>
+    </tr>
+
+  </tbody>
+</table>
